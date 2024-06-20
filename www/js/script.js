@@ -1,13 +1,8 @@
-let DATA=[{
+let DATA={
 	"pokemon": "AAA",
 	"risposte": ['https://img.pokemondb.net/sprites/home/normal/2x/absol.jpg', 'https://img.pokemondb.net/sprites/home/normal/2x/pikachu.jpg', 'https://img.pokemondb.net/sprites/home/normal/2x/incineroar.jpg'],
 	"soluzione": 'https://img.pokemondb.net/sprites/home/normal/2x/absol.jpg'
-}, {
-	"pokemon": "BBB",
-	"risposte": ['a', 'b', 'c'],
-	"soluzione": 'c',
-	"foto": "https://img.pokemondb.net/sprites/home/normal/2x/absol.jpg"
-}];
+};
 let ingame=false;
 let punteggio = 0;
 let ncard = 0;
@@ -15,9 +10,9 @@ let selected;
 
 function change(tipo, domande){
 	switch(domande){
-		case "generale": callGenerale(tipo); break;
-		case "foto": callFoto(tipo); break;
-		case "misto": callMisto(tipo); break;
+		case "generale": callGenerale(); break;
+		case "foto": callFoto(); break;
+		case "misto": callMisto(); break;
 		default: console.log('tipo sbagliato, coglione'); break;
 	}
 }
@@ -54,6 +49,29 @@ function fineQuiz(){
 	document.getElementById('display-result').style.display = 'block';
 }
 
+function startTraining(){
+
+	if(!DATA.foto){
+		document.getElementById('training-card').innerHTML = `
+	<img src="${DATA.soluzione}" alt="" srcset="">
+	<div class="card-body">
+		<h5 class="card-title">${DATA.pokemon}/h5>
+	</div>
+	<button type="button" class="btn btn-primary" id='training-next'>Continua</button>
+	`;
+	}else{
+		document.getElementById('training-card').innerHTML = `
+	<img src="${DATA.foto}" alt="" srcset="">
+	<div class="card-body">
+		<h5 class="card-title">${DATA.pokemon}</h5>
+		<p>${DATA.soluzione}</p>
+	</div>
+	<button type="button" class="btn btn-primary" id='training-next'>Continua</button>
+	`;
+	}
+
+}
+
 function mostra(tipo){
 	if(ingame){
 		if(!confirm('Sei in partita, sicuro di voler interrompere?')){
@@ -80,18 +98,8 @@ function mostra(tipo){
 	}
 }
 
-function callGenerale(tipo){
-	//fetch
-	mostra(tipo)
-}
-
-function callFoto(tipo){
-	
-	mostra(tipo)
-}
-
-function callMisto(tipo){
-
+function fetch(){
+	//fetch tipo 1
 	mostra(tipo)
 }
 
@@ -116,4 +124,8 @@ document.getElementById('quiz-conferma').addEventListener('click', ()=>{
 		fineQuiz();
 	else
 		nextQuiz();
+});
+
+document.getElementById('training-next').addEventListener('click',()=>{
+	
 });
