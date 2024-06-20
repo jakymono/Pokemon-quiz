@@ -1,32 +1,24 @@
-let DATA={
-	"pokemon": "AAA",
-	"risposte": ['https://img.pokemondb.net/sprites/home/normal/2x/absol.jpg', 'https://img.pokemondb.net/sprites/home/normal/2x/pikachu.jpg', 'https://img.pokemondb.net/sprites/home/normal/2x/incineroar.jpg'],
-	"soluzione": 'https://img.pokemondb.net/sprites/home/normal/2x/absol.jpg'
-};
+let DATA;
 let ingame=false;
 let punteggio = 0;
 let ncard = 0;
 let selected;
 
 function change(tipo, domande){
-	switch(domande){
-		case "generale": callGenerale(); break;
-		case "foto": callFoto(); break;
-		case "misto": callMisto(); break;
-		default: console.log('tipo sbagliato, coglione'); break;
-	}
+	mostra(tipo)
 }
 
-function startQuiz(){
+async function startQuiz(){
 	document.getElementById('quiz').style.display = 'flex';
 	document.getElementById('training').style.display = 'none';
 	punteggio = 0;
 	ncard = 0;
 	ingame = true;
-	nextQuiz();
+	callBE('quiz',1);
 }
 
 function nextQuiz(){
+	console.log(DATA)
 	if(!DATA[ncard].foto){
 		document.getElementById('quiz-ris-a').innerHTML = `<img src="${DATA[ncard].risposte[0]}" alt="" srcset="">`;
 		document.getElementById('quiz-ris-b').innerHTML = `<img src="${DATA[ncard].risposte[1]}" alt="" srcset="">`;
@@ -98,27 +90,54 @@ function mostra(tipo){
 	}
 }
 
-function fetch(){
-	//fetch tipo 1
-	mostra(tipo)
+async function callBE(tipo, domande){
+	let requestOptions = {
+		method: 'GET',
+		redirect: 'follow'
+	  };
+	  
+	  fetch("http://127.0.0.1:8090/pokemon/domande", requestOptions)
+		.then(response => response.json())
+		.then(result => {
+			DATA = result;
+			nextQuiz();
+		})
+		.catch(error => console.log('error', error));
 }
 
 document.getElementById('quiz-ris-a').addEventListener('click', ()=>{
 	selected = 0;
 	document.getElementById('quiz-conferma').style.display = 'block';
+	if(DATA[ncard].risposte[selected] == DATA[ncard].soluzione)
+		punteggio++;
+	else
+		console.log('scemo')
+	ncard++;
+	if(ncard==DATA.length)
+		fineQuiz();
+	else
+		nextQuiz();
 });
 document.getElementById('quiz-ris-b').addEventListener('click', ()=>{
 	selected = 1;
 	document.getElementById('quiz-conferma').style.display = 'block';
+	if(DATA[ncard].risposte[selected] == DATA[ncard].soluzione)
+		punteggio++;
+	else
+		console.log('scemo')
+	ncard++;
+	if(ncard==DATA.length)
+		fineQuiz();
+	else
+		nextQuiz();
 });
 document.getElementById('quiz-ris-c').addEventListener('click', ()=>{
 	selected = 2;
 	document.getElementById('quiz-conferma').style.display = 'block';
-});
-document.getElementById('quiz-conferma').addEventListener('click', ()=>{
-	document.getElementById('quiz-conferma').style.display = 'none';
 	if(DATA[ncard].risposte[selected] == DATA[ncard].soluzione)
 		punteggio++;
+	else
+		console.log('scemo')
 	ncard++;
 	if(ncard==DATA.length)
 		fineQuiz();
@@ -126,6 +145,8 @@ document.getElementById('quiz-conferma').addEventListener('click', ()=>{
 		nextQuiz();
 });
 
+/*
 document.getElementById('training-next').addEventListener('click',()=>{
 	
 });
+*/

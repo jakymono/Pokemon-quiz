@@ -20,24 +20,24 @@ public class PokemonService {
     private FotoPokemonRepository fotoPokemonRepository;
 
     String[] tipiPokemon = new String[] {
-            "Acqua",
-            "Fuoco",
-            "Erba",
-            "Elettrico",
-            "Normale",
-            "Volante",
-            "Veleno",
-            "Terra",
-            "Roccia",
-            "Insetto",
-            "Lotta",
-            "Spettro",
-            "Ghiaccio",
-            "Drago",
-            "Acciaio",
-            "Folletto",
-            "Psico",
-            "Buio"
+            "Water",
+            "Fire",
+            "Grass",
+            "Electric",
+            "Normal",
+            "Flying",
+            "Poison",
+            "Ground",
+            "Rock",
+            "Bug",
+            "Fighting",
+            "Ghost",
+            "Ice",
+            "Dragon",
+            "Steel",
+            "Fairy",
+            "Psychic",
+            "Dark"
     };
 
     public List<Domanda> domande(){
