@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Primary;
 public class FotoPokemon {
 
     @Id
-    @Column(name = "nome")
+    @Column(name = "name")
     private String nome;
 
     @Column(name = "img")
