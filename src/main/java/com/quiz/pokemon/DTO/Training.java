@@ -11,6 +11,8 @@ public class Training {
     private String pokemon;
     private String soluzione;
 
+    private String foto;
+
     public Training(String pokemon, String soluzione) {
         this.pokemon = pokemon;
         this.soluzione = soluzione;

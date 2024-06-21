@@ -9,8 +9,6 @@ import java.util.List;
 @Data
 public class Domanda extends Training{
 
-    private String foto;
-
     private List<String> risposte;
 
 }
