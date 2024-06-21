@@ -55,47 +55,52 @@ public class PokemonService {
         List<Domanda> risp = new ArrayList<>();
 
         for(int i = 0 ; i < 30; i++){
-            List<String> tipi = new ArrayList<>(Arrays.stream(tipiPokemon).toList());
-            Domanda domanda = new Domanda();
-            int numCasuale = random.nextInt(pokemons.size());
-
-            while(pokemons.get(numCasuale) == null){
-                numCasuale++;
-            }
-
-            domanda.setPokemon(pokemons.get(numCasuale).getNome());
-            domanda.setSoluzione(pokemons.get(numCasuale).getTipoPrimario());
-
-            List<String> risposte = new ArrayList<>();
-
-            risposte.add(pokemons.get(numCasuale).getTipoPrimario());
-
-            tipi.remove(pokemons.get(numCasuale).getTipoPrimario());
-
-            int num1 = random.nextInt(17);
-            risposte.add(tipiPokemon[num1]);
-            tipi.remove(num1);
-
-            int num2 = random.nextInt(16);
-            risposte.add(tipiPokemon[num2]);
-
-            String immagine = fotoPokemonRepository.findById(pokemons.get(numCasuale).getNome()).get().getImmagine();
-
-            System.out.println(pokemons.get(numCasuale).getNome());
-            System.out.println(immagine);
-
-            domanda.setFoto(immagine);
-
-            Collections.shuffle(risposte);
-
-            domanda.setRisposte(risposte);
-
-            pokemons.remove(pokemons.get(numCasuale));
-            risp.add(domanda);
+            domanda(risp,random,pokemons);
         }
 
         return risp;
     }
+
+    public void domanda(List<Domanda> risp,Random random,  List<Pokemon> pokemons){
+        List<String> tipi = new ArrayList<>(Arrays.stream(tipiPokemon).toList());
+        Domanda domanda = new Domanda();
+        int numCasuale = random.nextInt(pokemons.size());
+
+        while(pokemons.get(numCasuale) == null){
+            numCasuale++;
+        }
+
+        domanda.setPokemon(pokemons.get(numCasuale).getNome());
+        domanda.setSoluzione(pokemons.get(numCasuale).getTipoPrimario());
+
+        List<String> risposte = new ArrayList<>();
+
+        risposte.add(pokemons.get(numCasuale).getTipoPrimario());
+
+        tipi.remove(pokemons.get(numCasuale).getTipoPrimario());
+
+        int num1 = random.nextInt(17);
+        risposte.add(tipiPokemon[num1]);
+        tipi.remove(num1);
+
+        int num2 = random.nextInt(16);
+        risposte.add(tipiPokemon[num2]);
+
+        String immagine = fotoPokemonRepository.findById(pokemons.get(numCasuale).getNome()).get().getImmagine();
+
+        System.out.println(pokemons.get(numCasuale).getNome());
+        System.out.println(immagine);
+
+        domanda.setFoto(immagine);
+
+        Collections.shuffle(risposte);
+
+        domanda.setRisposte(risposte);
+
+        pokemons.remove(pokemons.get(numCasuale));
+        risp.add(domanda);
+    }
+
 
     public Training training(){
 
