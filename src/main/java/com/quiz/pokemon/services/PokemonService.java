@@ -1,5 +1,6 @@
 package com.quiz.pokemon.services;
 
+import com.quiz.pokemon.DTO.Training;
 import com.quiz.pokemon.DTO.Domanda;
 import com.quiz.pokemon.entity.FotoPokemon;
 import com.quiz.pokemon.entity.Pokemon;
@@ -8,6 +9,12 @@ import com.quiz.pokemon.repository.PokemonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Random;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 import java.util.*;
 
 @Service
