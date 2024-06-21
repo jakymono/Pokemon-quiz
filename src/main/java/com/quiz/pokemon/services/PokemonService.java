@@ -70,7 +70,6 @@ public class PokemonService {
 
             risposte.add(pokemons.get(numCasuale).getTipoPrimario());
 
-            pokemons.remove(pokemons.get(numCasuale));
             tipi.remove(pokemons.get(numCasuale).getTipoPrimario());
 
             int num1 = random.nextInt(17);
@@ -80,14 +79,18 @@ public class PokemonService {
             int num2 = random.nextInt(16);
             risposte.add(tipiPokemon[num2]);
 
-            System.out.println(pokemons.get(numCasuale).getNome());
             String immagine = fotoPokemonRepository.findById(pokemons.get(numCasuale).getNome()).get().getImmagine();
+
+            System.out.println(pokemons.get(numCasuale).getNome());
+            System.out.println(immagine);
+
             domanda.setFoto(immagine);
 
             Collections.shuffle(risposte);
 
             domanda.setRisposte(risposte);
 
+            pokemons.remove(pokemons.get(numCasuale));
             risp.add(domanda);
         }
 

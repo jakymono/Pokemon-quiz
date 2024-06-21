@@ -14,7 +14,7 @@ import java.util.Optional;
 public interface FotoPokemonRepository extends JpaRepository<FotoPokemon,String> {
 
 
-    @Query(value = "select f from pokemon_pics f where f.name like '%:nome%'",nativeQuery = true)
+    @Query(value = "select * from pokemon_pics f where f.name like '%:nome%'",nativeQuery = true)
     Optional<FotoPokemon> findByNomeLike(String nome);
 
 }
