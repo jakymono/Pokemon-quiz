@@ -13,18 +13,18 @@ public class TrainingController {
     @Autowired
     private FotoPokemonService fotoPokemonService;
 
-    @GetMapping("{scelta}")
-    public ResponseEntity<?> getRandomPokemon(@PathVariable int scelta){
-        switch (scelta){
-            case 1:
-                //to Do: get tipo training
-                break;
-            case 2:
-                return fotoPokemonService.getRandomTraining();
-            case 3:
-                //to Do: get tipo/foto mix training
-                break;
-        }
-        return new ResponseEntity<>("Errore: scelta non disponibile", HttpStatus.BAD_REQUEST);
+    @GetMapping("tipi")
+    public ResponseEntity<?> getTrainingTipi(){
+        //To do
+        return ResponseEntity.ok("");
+    }
+    @GetMapping("foto")
+    public ResponseEntity<?> getTrainingFoto(){
+        return fotoPokemonService.getRandomTraining();
+    }
+    @GetMapping("mix")
+    public ResponseEntity<?> getTrainingMix(){
+        //To do
+        return ResponseEntity.ok("");
     }
 }

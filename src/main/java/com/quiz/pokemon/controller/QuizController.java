@@ -13,19 +13,18 @@ public class QuizController {
     @Autowired
     private PokemonService pokemonService;
 
-    @GetMapping("{scelta}")
-    public ResponseEntity<?> getDomande(@PathVariable int scelta){
-        switch (scelta){
-            case 1:
-                return ResponseEntity.ok(pokemonService.domande());
-            case 2:
-                //to Do: get foto domande
-                break;
-            case 3:
-                //to Do: get tipo/foto mix training
-                break;
-        }
-        return new ResponseEntity<>("Errore: scelta non disponibile", HttpStatus.BAD_REQUEST);
+    @GetMapping("tipi")
+    public ResponseEntity<?> getDomandeTipi(){
+        return ResponseEntity.ok(pokemonService.domande());
     }
-
+    @GetMapping("foto")
+    public ResponseEntity<?> getDomandeFoto(){
+        //To do
+        return ResponseEntity.ok("");
+    }
+    @GetMapping("mix")
+    public ResponseEntity<?> getDomandeMix(){
+        //To do
+        return ResponseEntity.ok("");
+    }
 }
