@@ -20,16 +20,16 @@
 		  <div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
 			  <li class="nav-item">
-				<a class="nav-link active" aria-current="page" href="#">Home</a>
+				<a class="nav-link active" aria-current="page" href="#" onclick="mostra('home','generale')">Home</a>
 			  </li>
 			  <li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 					Quiz
 				</a>
 				<ul class="dropdown-menu">
-					<li><a class="dropdown-item" onclick="change('quiz','generale')">Domande Generali</a></li>
-					<li><a class="dropdown-item" onclick="change('quiz','foto')">Solo Foto</a></li>
-					<li><a class="dropdown-item" onclick="change('quiz','misto')">Misto</a></li>
+					<li><a class="dropdown-item" onclick="mostra('quiz','tipi')">Tipi</a></li>
+					<li><a class="dropdown-item" onclick="mostra('quiz','foto')">Foto</a></li>
+					<li><a class="dropdown-item" onclick="mostra('quiz','mix')">Misto</a></li>
 				</ul>
 			  </li>
 			  <li class="nav-item dropdown">
@@ -37,9 +37,9 @@
 					Training
 				</a>
 				<ul class="dropdown-menu">
-					<li><a class="dropdown-item" onclick="change('training','generale')">Domande Generali</a></li>
-					<li><a class="dropdown-item" onclick="change('training','foto')">Solo Foto</a></li>
-					<li><a class="dropdown-item" onclick="change('training','misto')">Misto</a></li>
+					<li><a class="dropdown-item" onclick="mostra('training','tipi')">Tipi</a></li>
+					<li><a class="dropdown-item" onclick="mostra('training','foto')">Foto</a></li>
+					<li><a class="dropdown-item" onclick="mostra('training','mix')">Misto</a></li>
 				</ul>
 			  </li>
 			</ul>
@@ -56,6 +56,16 @@
 	</div>
 
 	<div id="quiz" style=" display: none; flex-direction: column; align-items: center;">
+		<div style="position: absolute; top: 4rem; right: 1rem; width: 10rem;">
+			<div class="card">
+				<h5 class="card-title">
+					PT:
+				</h5>
+				<div class="card-body">
+					<p id="quiz-show-pt"></p>
+				</div>
+			</div>
+		</div>
 		<h1>QUIZ POKEMON</h1>
 		<div class="card">
 			<img src="" alt="" srcset="" id="quiz-img">
@@ -73,7 +83,6 @@
 					</button>
 				</div>
 			</div>
-			<button type="button" class="btn btn-primary" id="quiz-conferma" style="display: none;">Conferma</button>
 		</div>
 	</div>
 
