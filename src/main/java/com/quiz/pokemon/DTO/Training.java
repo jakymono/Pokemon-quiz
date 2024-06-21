@@ -9,6 +9,7 @@ public class Training {
 
     @NotNull
     private String pokemon;
+
     private String soluzione;
 
     private String foto;

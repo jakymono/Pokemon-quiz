@@ -52,13 +52,12 @@ public class PokemonService {
 
         Random random = new Random();
         List<Pokemon> pokemons = pokemonRepository.findAll();
-        List<FotoPokemon> fotoS= fotoPokemonRepository.findAll();
         List<Domanda> risp = new ArrayList<>();
 
         for(int i = 0 ; i < 30; i++){
             List<String> tipi = new ArrayList<>(Arrays.stream(tipiPokemon).toList());
             Domanda domanda = new Domanda();
-            int numCasuale = random.nextInt(800);
+            int numCasuale = random.nextInt(pokemons.size());
 
             while(pokemons.get(numCasuale) == null){
                 numCasuale++;
@@ -70,6 +69,8 @@ public class PokemonService {
             List<String> risposte = new ArrayList<>();
 
             risposte.add(pokemons.get(numCasuale).getTipoPrimario());
+
+            pokemons.remove(pokemons.get(numCasuale));
             tipi.remove(pokemons.get(numCasuale).getTipoPrimario());
 
             int num1 = random.nextInt(17);
@@ -97,11 +98,9 @@ public class PokemonService {
 
         Random random = new Random();
         List<Pokemon> pokemons = pokemonRepository.findAll();
-        List<FotoPokemon> fotoS= fotoPokemonRepository.findAll();
 
-        List<String> tipi = new ArrayList<>(Arrays.stream(tipiPokemon).toList());
-        Domanda domanda = new Domanda();
-        int numCasuale = random.nextInt(800);
+        Training domanda = new Training();
+        int numCasuale = random.nextInt(pokemons.size());
 
         while(pokemons.get(numCasuale) == null){
             numCasuale++;
